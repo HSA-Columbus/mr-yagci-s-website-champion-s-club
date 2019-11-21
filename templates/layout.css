@@ -1,7 +1,7 @@
 body {
     background-color: white;
     font-size: 20px;
-    font-family: Georgia;
+    font-family: Georgia, serif;
 }
 h1 {
     color: black;
@@ -19,4 +19,8 @@ div {
     padding: 1em;
     text-align: center;
     width: 60%;
+}
+.link-a {
+    padding-left: 5em;
+    padding-right: 5em;
 }
