@@ -7,11 +7,12 @@ from email.mime.multipart import MIMEMultipart
 
 
 def contactyagci():
-    email = ''
-    password = ''
-    send_to_email = ''
-    subject = ''
-    message = ''
+    global email, password, message
+    email = email
+    password = password
+    send_to_email = "bb4007670@gmail.com"
+    subject = 'Question from student'
+    message = message
 
     msg = MIMEMultipart()
     msg['From'] = email
@@ -31,7 +32,7 @@ def contactyagci():
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/home')
 def home():
     return render_template("home.html")
 
@@ -41,9 +42,13 @@ def assignments():
     return render_template("assignments.html")
 
 
-@app.route('/contact')
-def contact(email, password, message):
-    return render_template("contact.html", email=email, password=password, message=message)
+@app.route('/contact', methods=['POST'])
+def contact():
+    global email, password, message
+    email = request.form['email']
+    password = request.form['password']
+    message = request.form['message']
+    return render_template("contact.html")
 
 
 @app.route('/background')
