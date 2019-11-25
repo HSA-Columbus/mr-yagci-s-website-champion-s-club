@@ -19,8 +19,19 @@ div {
     padding: 1em;
     text-align: center;
     width: 60%;
+    overflow: auto;
 }
 .link-a {
     padding-left: 5em;
     padding-right: 5em;
+}
+.div1 {
+    float: left;
+    width: 250px;
+    height: 250px;
+}
+.div2 {
+    margin-left: 325px;
+    width: 65%;
+    height: 250px;
 }

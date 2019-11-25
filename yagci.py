@@ -1,38 +1,55 @@
 from flask import *
-from flask_mail import Mail, Message
 import xlrd
 import xlwt
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+
+def contactyagci():
+    email = ''
+    password = ''
+    send_to_email = ''
+    subject = ''
+    message = ''
+
+    msg = MIMEMultipart()
+    msg['From'] = email
+    msg['To'] = send_to_email
+    msg['Subject'] = subject
+
+    msg.attach(MIMEText(message, 'plain'))
+
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(email, password)
+    text = msg.as_string()
+    server.sendmail(email, send_to_email, text)
+    server.quit()
+
 
 app = Flask(__name__)
 
-app.config['DEBUG'] = True
-app.config['TESTING'] = False
-app.config['MAIL_SERVER'] = 'smtp.hushmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
-# app.config['MAIL_DEBUG'] = True
-app.config['MAIL_USERNAME'] = 'jipodo2642@mytmail.net'
-app.config['MAIL_PASSWORD'] = ''
-app.config['MAIL_DEFAULT_SENDER'] = 'jipodo2642@mytmail.net'
-app.config['MAIL_MAX_EMAILS'] = None
-# app.config['MAIL_SUPPRESS_SEND'] = False
-app.config['MAIL_ASCII_ATTACHMENTS'] = False
-
-mail = Mail(app)
-
-# mail = Mail()
-# mail.init_app(app)
-
 
 @app.route('/')
-def index():
-    msg = Message('hi there', recipients=['jipodo2642@mytmail.net'])
-    msg.body = 'This is a test email sent from jeremiah\'s app. You don\'t have to reply.'
-    mail.send(msg)
-
-    return 'Message has been sent!'
+def home():
+    return render_template("home.html")
 
 
-if __name__ == '__main__':
-    app.run()
+@app.route('/assignments')
+def assignments():
+    return render_template("assignments.html")
+
+
+@app.route('/contact')
+def contact(email, password, message):
+    return render_template("contact.html", email=email, password=password, message=message)
+
+
+@app.route('/background')
+def background():
+    return render_template("background.html")
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
