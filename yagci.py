@@ -7,10 +7,10 @@ from email.mime.multipart import MIMEMultipart
 
 
 def contactyagci():
-    global email, password, message
-    email = email
-    password = password
-    send_to_email = "bb4007670@gmail.com"
+    global send_to_email, password, message
+    email = "imnotarobotlol1234@gmail.com"
+    password = "imnotarobot"
+    send_to_email = send_to_email
     subject = 'Question from student'
     message = message
 
@@ -44,9 +44,9 @@ def assignments():
 
 @app.route('/contact', methods=['POST'])
 def contact():
-    global email, password, message
-    email = request.form['email']
-    password = request.form['password']
+    global name1, send_to_email, message
+    name1 = request.form['name']
+    send_to_email = request.form['email']
     message = request.form['message']
     return render_template("contact.html")
 
