@@ -18,17 +18,22 @@
     <a class="link-a" href="contact.html">Contact Me</a>
 </div><br>
 
-<div>
-    <h2>Contact Me</h2>
-    <h3>If you have questions or concerns, use this form to contact me.</h3>
-    <form name="search" action="." method="post">
-        <label>Email: </label>
-        <input type="text" name="email">
-        <label>Password: </label>
-        <input type="text" name="password">
-        <label>Message: </label>
-        <input type="text" name="message">
-        <input type="submit" value="Send Message">
+<div class="contact-title">
+    <h1>Contact Me</h1>
+    <h2>If you have questions or problems related to math.</h2>
+</div>
+
+<div class="contact-form">
+    <form id="contact-form" method="post" action="">
+        <input name="name" type="text" class="form-control" placeholder="Your Name" required><br>
+
+        <input name="email" type="email" class="form-control" placeholder="Your Email" required><br
+        >
+
+        <textarea name="message" class="form-control" placeholder="Message" rows="4" required>
+        </textarea><br>
+
+        <input type="submit" class="form-control submit" value="SEND MESSAGE">
     </form>
 </div>
 
