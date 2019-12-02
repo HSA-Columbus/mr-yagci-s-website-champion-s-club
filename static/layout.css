@@ -14,16 +14,16 @@ h3 {
     color:black;
 }
 div {
-    margin: auto;
+    margin-left: 10%;
+    margin-right: auto;
     border: 3px solid black;
-    padding: 1em;
+    padding: 1%;
     text-align: center;
     width: 60%;
-    overflow: auto;
 }
 .link-a {
-    padding-left: 5em;
-    padding-right: 5em;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 .div1 {
     float: left;
@@ -31,7 +31,7 @@ div {
     height: 250px;
 }
 .div2 {
-    margin-left: 325px;
-    width: 65%;
+    margin-left: 290px;
+    width: 49%;
     height: 250px;
 }
