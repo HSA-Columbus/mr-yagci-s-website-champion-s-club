@@ -6,13 +6,31 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-def contactyagci():
-    global send_to_email, password, message
+app = Flask(__name__)
+
+
+@app.route('/contact')
+def contact1():
+    return render_template("contact.html")
+
+
+@app.route('/')
+def home():
+    return render_template("home.html")
+
+
+@app.route('/assignments')
+def assignments():
+    return render_template("assignments.html")
+
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
     email = "imnotarobotlol1234@gmail.com"
     password = "imnotarobot"
-    send_to_email = send_to_email
+    send_to_email = "imnotarobotlol1234@gmail.com"
     subject = 'Question from student'
-    message = message
+    message = request.form['message']
 
     msg = MIMEMultipart()
     msg['From'] = email
@@ -27,27 +45,6 @@ def contactyagci():
     text = msg.as_string()
     server.sendmail(email, send_to_email, text)
     server.quit()
-
-
-app = Flask(__name__)
-
-
-@app.route('/home')
-def home():
-    return render_template("home.html")
-
-
-@app.route('/assignments')
-def assignments():
-    return render_template("assignments.html")
-
-
-@app.route('/contact', methods=['POST'])
-def contact():
-    global name1, send_to_email, message
-    name1 = request.form['name']
-    send_to_email = request.form['email']
-    message = request.form['message']
     return render_template("contact.html")
 
 
