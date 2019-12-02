@@ -32,7 +32,7 @@ def contactyagci():
 app = Flask(__name__)
 
 
-@app.route('/home')
+@app.route('/')
 def home():
     return render_template("home.html")
 
@@ -41,8 +41,11 @@ def home():
 def assignments():
     return render_template("assignments.html")
 
+@app.route('/contact')
+def get_contact():
+    return render_template("contact.html")
 
-@app.route('/contact', methods=['POST'])
+@app.route('/post-contact', methods=['POST'])
 def contact():
     global name1, send_to_email, message
     name1 = request.form['name']
