@@ -30,7 +30,9 @@ def contact():
     password = "imnotarobot"
     send_to_email = "imnotarobotlol1234@gmail.com"
     subject = 'Question from student'
-    message = request.form['message']
+    name = request.form['name']
+    email1 = request.form['email']
+    message = request.form['message'] + "\nFrom: " + str(email1) + "\nStudent Name: " + str(name)
 
     msg = MIMEMultipart()
     msg['From'] = email
