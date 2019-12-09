@@ -3,16 +3,21 @@ body {
     font-size: 20px;
     font-family: Georgia, serif;
 }
-
+p {
+    color: #e6ebf4;
+}
 h1 {
-    color: #36393d;
+    color: #e6ebf4;
 }
 h2 {
-    color: #36393d;
+    color: #e6ebf4;
     text-align: center;
 }
 h3 {
-    color:#36393d;
+    color:#e6ebf4;
+}
+li {
+    color: #e6ebf4;
 }
 div {
     color: #36393d;
@@ -23,9 +28,17 @@ div {
     width: 60%;
     overflow: auto;
 }
+a {
+    color: #088fc5;
+}
+th {
+    color: #e6ebf4;
+    background-color: #738ad6;
+}
 .link-a {
     padding-left: 5em;
     padding-right: 5em;
+    color: #088fc5;
 }
 .div1 {
     float: left;
@@ -39,18 +52,15 @@ div {
 }
 .block {
   display: block;
-  width: 100%;
+  width: 100%; height: 100%;
   border: none;
   background-color: #738ad6;
   padding: 14px 28px;
   font-size: 16px;
   cursor: pointer;
-  text-align: center;
+  text-align: center; color: #e6ebf4;
 }
 .block1 {
     width: 100%;
     row-span: 4;
-}
-p{
-    color: #36393d;
 }
