@@ -15,12 +15,32 @@ with sqlite3.connect("Thisistest.db") as conn:
     print(table_assignments)
 # --------this works------
 
+def contact_yagci(studentname, studentemail, studentmessage):
+    email = "imnotarobotlol1234@gmail.com"
+    password = "imnotarobot"
+    send_to_email = "imnotarobotlol1234@gmail.com"
+    subject = 'Question from student'
+    message = "\nFrom: " + str(studentname) + "\nStudent Name: " + str(studentemail) + "\nMessage: {}".format(studentmessage)
+
+    msg = MIMEMultipart()
+    msg['From'] = email
+    msg['To'] = send_to_email
+    msg['Subject'] = subject
+
+    msg.attach(MIMEText(message, 'plain'))
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(email, password)
+        text = msg.as_string()
+        server.sendmail(email, send_to_email, text)
+        server.quit()
+        return 1
+    except:
+        return 0
+
+
 app = Flask(__name__)
-
-
-@app.route('/contact')
-def contact1():
-    return render_template("contact.html")
 
 
 @app.route('/')
@@ -40,28 +60,14 @@ def assignments():
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
-    email = "imnotarobotlol1234@gmail.com"
-    password = "imnotarobot"
-    send_to_email = "imnotarobotlol1234@gmail.com"
-    subject = 'Question from student'
-    name = request.form['name']
-    email1 = request.form['email']
-    message = request.form['message'] + "\nFrom: " + str(email1) + "\nStudent Name: " + str(name)
-
-    msg = MIMEMultipart()
-    msg['From'] = email
-    msg['To'] = send_to_email
-    msg['Subject'] = subject
-
-    msg.attach(MIMEText(message, 'plain'))
-
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(email, password)
-    text = msg.as_string()
-    server.sendmail(email, send_to_email, text)
-    server.quit()
-    return render_template("contact.html")
+    if request.method == "POST":
+        result = contact_yagci(request.form['name'], request.form['email'], request.form['message'])
+        if result == 1:
+            return render_template('contact.html', result="Email was sent successfully.")
+        elif result == 0:
+            return render_template('contact.html', result="Email was not successfully sent.")
+    else:
+        return render_template("contact.html")
 
 
 @app.route('/background')
