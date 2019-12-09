@@ -4,7 +4,16 @@ import xlwt
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-
+import sqlite3
+import json
+from pathlib import Path
+# --------this works------
+with sqlite3.connect("Thisistest.db") as conn:
+    command = "SELECT * FROM table_assignments"
+    cursor = conn.execute(command)
+    table_assignments = cursor.fetchall()
+    print(table_assignments)
+# --------this works------
 
 app = Flask(__name__)
 
@@ -21,7 +30,12 @@ def home():
 
 @app.route('/assignments')
 def assignments():
-    return render_template("assignments.html")
+    with sqlite3.connect("Thisistest.db") as conn:
+        command = "SELECT * FROM table_assignments"
+        cursor = conn.execute(command)
+        table_assignments = cursor.fetchall()
+        # print(table_assignments)
+    return render_template("assignments.html", table_assignments=table_assignments)
 
 
 @app.route('/contact', methods=['GET', 'POST'])

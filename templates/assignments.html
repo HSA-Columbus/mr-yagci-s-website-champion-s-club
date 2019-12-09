@@ -44,26 +44,20 @@
     <!---------------------------Jeremiah------------------------------------------------>
 
     <table>
+
         <tr>
             <th>Video Name</th>
             <th>Posted</th>
             <th>*Due*</th>
+            <th>Description</th>
         </tr>
+        {%for i in table_assignments%}
         <tr>
-            <th><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Math for Dummies Cause U dum</a></th>
-            <th>11/20/19</th>
-            <th>11/21/20</th>
+            {% for x in i %}
+            <th>{{x}}</th>
+            {%endfor%}
         </tr>
-        <tr>
-            <th><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Air Pods Jesse SUper form</a></th>
-            <th>11/20/19</th>
-            <th>11/21/20</th>
-        </tr>
-        <tr>
-            <th><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Boolean</a></th>
-            <th>11/20/19</th>
-            <th>11/21/20</th>
-        </tr>
+        {%endfor%}
         </table>
     <!--------------------------------------------------------------------------->
 
