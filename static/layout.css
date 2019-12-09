@@ -1,22 +1,23 @@
 body {
-    background-color: white;
+    background-color: #000000;
     font-size: 20px;
     font-family: Georgia, serif;
 }
 
 h1 {
-    color: black;
+    color: #36393d;
 }
 h2 {
-
+    color: #36393d;
     text-align: center;
 }
 h3 {
-    color:black;
+    color:#36393d;
 }
 div {
+    color: #36393d;
     margin: auto;
-    border: 3px solid black;
+    border: 3px solid #36393d;
     padding: 1em;
     text-align: center;
     width: 60%;
@@ -40,7 +41,7 @@ div {
   display: block;
   width: 100%;
   border: none;
-  background-color: #4CAF50;
+  background-color: #738ad6;
   padding: 14px 28px;
   font-size: 16px;
   cursor: pointer;
@@ -49,4 +50,7 @@ div {
 .block1 {
     width: 100%;
     row-span: 4;
+}
+p{
+    color: #36393d;
 }
