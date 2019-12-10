@@ -52,9 +52,21 @@ def assignments():
     return render_template("assignments.html", table_assignments=table_assignments)
 
 
-@app.route('/assignment_creation')
+@app.route('/assignment_creation', methods=['GET', 'POST'])
 def assignment_creation():
-    return render_template("assign_take.html")
+    if request.method == "POST":
+        with sqlite3.connect("Thisistest.db") as conn:
+            command = "INSERT INTO table_assignments VALUES(?, ?, ?, ?)"
+            list = []
+            list.append(request.form['assignment_name'])
+            list.append(request.form['todays_date'])
+            list.append(request.form['due_date'])
+            list.append(request.form['description'])
+            conn.execute(command, list)
+            conn.commit()
+        return render_template("assign_take.html")
+    else:
+        return render_template("assign_take.html")
 
 
 @app.route('/contact', methods=['GET', 'POST'])
