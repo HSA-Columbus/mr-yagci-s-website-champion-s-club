@@ -7,13 +7,7 @@ from email.mime.multipart import MIMEMultipart
 import sqlite3
 import json
 from pathlib import Path
-# --------this works------
-with sqlite3.connect("Thisistest.db") as conn:
-    command = "SELECT * FROM table_assignments"
-    cursor = conn.execute(command)
-    table_assignments = cursor.fetchall()
-    print(table_assignments)
-# --------this works------
+
 
 def contact_yagci(studentname, studentemail, studentmessage):
     email = "imnotarobotlol1234@gmail.com"
@@ -51,11 +45,16 @@ def home():
 @app.route('/assignments')
 def assignments():
     with sqlite3.connect("Thisistest.db") as conn:
-        command = "SELECT * FROM table_assignments"
-        cursor = conn.execute(command)
-        table_assignments = cursor.fetchall()
+        command1 = "SELECT * FROM table_assignments"
+        cursor1 = conn.execute(command1)
+        table_assignments = cursor1.fetchall()
         # print(table_assignments)
     return render_template("assignments.html", table_assignments=table_assignments)
+
+
+@app.route('/assignment_creation')
+def assignment_creation():
+    return render_template("assign_take.html")
 
 
 @app.route('/contact', methods=['GET', 'POST'])
