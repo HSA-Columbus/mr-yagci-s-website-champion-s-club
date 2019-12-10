@@ -33,74 +33,39 @@
     <a class="link-a" href="/">Home</a>
     <a class="link-a" href="/assignments">Assignments</a>
     <a class="link-a" href="/contact">Contact Me</a>
+    <a class="link-a" href="/assignment_creation">Assignment Creation</a>
 </div><br>
-
-<div>
-    <p>Information about Mr. Yagci's math assignments policy</p>
-    <ul>
-        <li>No late work, not even by a second.</li>
-        <li>No incomplete assignments.</li>
-        <li>No copying.</li>
-        <li>Only use pencils on paper assignments.</li>
-        <li>Participate.</li>
-    </ul>
-</div><br>
-
 <div style="width: 30%;">
-    <h2>Current Assignments</h2>
-    <!---------------------------Jeremiah------------------------------------------------>
-
-    <table>
-
-        <tr>
-            <th>Assignment Name</th>
-            <th>Posted</th>
-            <th>*Due*</th>
-            <th>Description</th>
-        </tr>
-        {%for i in table_assignments%}
-        <tr>
-            {% for x in i %}
-            <th>{{x}}</th>
-            {%endfor%}
-        </tr>
-        {%endfor%}
-        </table>
-    <!--------------------------------------------------------------------------->
-    <div style="width: 30%;">
-        <h2>Assignment  Forms</h2>
-        <form action="/action_page.php">
-            Assignment Name:
-            <br>
-        <input type="text" name="firstname" value="Mickey">
+    <h2>Create Assignment Form</h2>
+    <form action="/action_page.php">
         <br>
-        Last name:<br>
-        <input type="text" name="lastname" value="Mouse">
+        <input type="text" name="assignment_name" placeholder="Assignment Name">
         <br><br>
-        <input type="submit" value="Submit">
-        Last name:<br>
-            <label>
-                <input type="text" name="lastname" value="Mouse">
-            </label>
-            <br><br>
-        <input type="submit" value="Submit">
-        Last name:<br>
-        <input type="text" name="lastname" value="Mouse">
+        <br>
+        <input type="text" name="todays_date" placeholder="Today's Date">
+        <br><br>
+        <br>
+        <input type="text" name="due_date" placeholder="Due Date">
+        <br><br>
+        <br>
+        <input type="text" name="description" placeholder="Description">
         <br><br>
         <input type="submit" value="Submit">
     </form>
+
 </div>
-</div><br><br>
+<br><br>
 <div>
     <a class="link-a" href="/">Home</a>
     <a class="link-a" href="/assignments">Assignments</a>
     <a class="link-a" href="/contact">Contact Me</a>
+    <a class="link-a" href="/assignment_creation">Assignment Creation</a>
 </div><br>
 
 <div style="font-size: 12px">
     <p style="text-align: left">Copyright 2019. All rights reserved
         <span style="float:right;">
-            developed by @TylerFowsantia
+            developed by @TylerFowsantia, @JeremiahCole, @JustinWin
         </span>
     </p>
 </div>
