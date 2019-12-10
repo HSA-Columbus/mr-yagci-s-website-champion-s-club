@@ -36,8 +36,8 @@ th {
     background-color: #738ad6;
 }
 .link-a {
-    padding-left: 5em;
-    padding-right: 5em;
+    padding-left: 5%;
+    padding-right: 5%;
     color: #088fc5;
 }
 .div1 {
@@ -63,4 +63,7 @@ th {
 .block1 {
     width: 100%;
     row-span: 4;
+}
+.empty {
+    border: none;
 }
