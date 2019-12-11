@@ -14,7 +14,8 @@ def contact_yagci(studentname, studentemail, studentmessage):
     password = "imnotarobot"
     send_to_email = "imnotarobotlol1234@gmail.com"
     subject = 'Question from student'
-    message = "\nFrom: " + str(studentname) + "\nStudent Name: " + str(studentemail) + "\nMessage: {}".format(studentmessage)
+    message = "\nFrom: " + str(studentname) + "\nStudent Name: " + str(studentemail) + "\nMessage: {}".format(
+        studentmessage)
 
     msg = MIMEMultipart()
     msg['From'] = email
