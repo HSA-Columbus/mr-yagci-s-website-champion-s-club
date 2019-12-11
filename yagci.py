@@ -9,7 +9,6 @@ import json
 from pathlib import Path
 
 
-
 def contact_yagci(studentname, studentemail, studentmessage):
     email = "imnotarobotlol1234@gmail.com"
     password = "imnotarobot"
@@ -50,7 +49,7 @@ def login():
         if request.form['username'] != 'yagci' or request.form['password'] != 'tagci2':
             error = 'Invalid Credentials. Please try again.'
         else:
-            return redirect(url_for('home'))
+            return redirect(url_for('assignment_creation'))
     return render_template('login.html', error=error)
 
 
