@@ -15,6 +15,7 @@ with sqlite3.connect("Thisistest.db") as conn:
     print(table_assignments)
 # --------this works------
 
+
 def contact_yagci(studentname, studentemail, studentmessage):
     email = "imnotarobotlol1234@gmail.com"
     password = "imnotarobot"
@@ -46,6 +47,17 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return render_template("home.html")
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'yagci' or request.form['password'] != 'tagci2':
+            error = 'Invalid Credentials. Please try again.'
+        else:
+            return redirect(url_for('home'))
+    return render_template('login.html', error=error)
 
 
 @app.route('/assignments')
