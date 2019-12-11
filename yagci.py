@@ -43,6 +43,17 @@ def home():
     return render_template("home.html")
 
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'yagci' or request.form['password'] != 'tagci2':
+            error = 'Invalid Credentials. Please try again.'
+        else:
+            return redirect(url_for('assignment_creation'))
+    return render_template('login.html', error=error)
+
+
 @app.route('/assignments')
 def assignments():
     with sqlite3.connect("Thisistest.db") as conn:
