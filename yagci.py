@@ -1,6 +1,4 @@
 from flask import *
-import xlrd
-import xlwt
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -36,6 +34,7 @@ def contact_yagci(studentname, studentemail, studentmessage):
 
 
 app = Flask(__name__)
+Login = False
 
 
 @app.route('/')
@@ -45,11 +44,15 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    global Login
     error = None
     if request.method == 'POST':
-        if request.form['username'] != 'yagci' or request.form['password'] != 'tagci2':
+        user = request.form['username']
+        password = request.form['password']
+        if user != 'yagci' and password != 'tagci2':
             error = 'Invalid Credentials. Please try again.'
         else:
+            Login = True
             return redirect(url_for('assignment_creation'))
     return render_template('login.html', error=error)
 
@@ -66,19 +69,23 @@ def assignments():
 
 @app.route('/assignment_creation', methods=['GET', 'POST'])
 def assignment_creation():
-    if request.method == "POST":
-        with sqlite3.connect("Thisistest.db") as conn:
-            command = "INSERT INTO table_assignments VALUES(?, ?, ?, ?)"
-            list = []
-            list.append(request.form['assignment_name'])
-            list.append(request.form['todays_date'])
-            list.append(request.form['due_date'])
-            list.append(request.form['description'])
-            conn.execute(command, list)
-            conn.commit()
-        return render_template("assign_take.html")
+    global Login
+    if Login is False:
+        return render_template('401.html')
     else:
-        return render_template("assign_take.html")
+        if request.method == "POST":
+            with sqlite3.connect("Thisistest.db") as conn:
+                command = "INSERT INTO table_assignments VALUES(?, ?, ?, ?)"
+                data_list = []
+                data_list.append(request.form['assignment_name'])
+                data_list.append(request.form['todays_date'])
+                data_list.append(request.form['due_date'])
+                data_list.append(request.form['description'])
+                conn.execute(command, list)
+                conn.commit()
+            return render_template("assign_take.html")
+        else:
+            return render_template("assign_take.html")
 
 
 @app.route('/contact', methods=['GET', 'POST'])
@@ -93,9 +100,26 @@ def contact():
         return render_template("contact.html")
 
 
+@app.route('/logout')
+def logout():
+    global Login
+    Login = False
+    return render_template('home.html')
+
+
 @app.route('/background')
 def background():
     return render_template("background.html")
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(401)
+def unauthorized_user(e):
+    return render_template('401.html'), 401
 
 
 if __name__ == "__main__":
