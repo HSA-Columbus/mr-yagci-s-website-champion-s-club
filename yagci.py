@@ -3,8 +3,6 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import sqlite3
-import json
-from pathlib import Path
 
 
 def contact_yagci(studentname, studentemail, studentmessage):
@@ -29,7 +27,7 @@ def contact_yagci(studentname, studentemail, studentmessage):
         server.sendmail(email, send_to_email, text)
         server.quit()
         return 1
-    except:
+    finally:
         return 0
 
 
