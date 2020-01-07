@@ -31,16 +31,16 @@ def contact_yagci(studentname, studentemail, studentmessage):
         return 0
 
 
-app = Flask(__name__)
+application = Flask(__name__)
 Login = False
 
 
-@app.route('/')
+@application.route('/')
 def home():
     return render_template("home.html")
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@application.route('/login', methods=['GET', 'POST'])
 def login():
     global Login
     error = None
@@ -55,7 +55,7 @@ def login():
     return render_template('login.html', error=error)
 
 
-@app.route('/assignments')
+@application.route('/assignments')
 def assignments():
     with sqlite3.connect("Thisistest.db") as conn:
         command1 = "SELECT * FROM table_assignments"
@@ -65,7 +65,7 @@ def assignments():
     return render_template("assignments.html", table_assignments=table_assignments)
 
 
-@app.route('/assignment_creation', methods=['GET', 'POST'])
+@application.route('/assignment_creation', methods=['GET', 'POST'])
 def assignment_creation():
     global Login
     if Login is False:
@@ -86,7 +86,7 @@ def assignment_creation():
             return render_template("assign_take.html")
 
 
-@app.route('/contact', methods=['GET', 'POST'])
+@application.route('/contact', methods=['GET', 'POST'])
 def contact():
     if request.method == "POST":
         result = contact_yagci(request.form['name'], request.form['email'], request.form['message'])
@@ -98,27 +98,27 @@ def contact():
         return render_template("contact.html")
 
 
-@app.route('/logout')
+@application.route('/logout')
 def logout():
     global Login
     Login = False
     return render_template('home.html')
 
 
-@app.route('/background')
+@application.route('/background')
 def background():
     return render_template("background.html")
 
 
-@app.errorhandler(404)
+@application.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
 
 
-@app.errorhandler(401)
+@application.errorhandler(401)
 def unauthorized_user(e):
     return render_template('401.html'), 401
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    application.run(debug=True)
